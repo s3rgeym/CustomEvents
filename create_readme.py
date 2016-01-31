@@ -8,7 +8,7 @@ if __name__ == "__main__":
         lines = match.splitlines()
         for line in lines:
             line = re.sub("^ *\* ?", "", line.rstrip())
-            line = re.sub("^@", "*", line)
+            line = re.sub("^@", "* ", line)
             out.append(line)
         out.append('')
     content = "\n".join(out)
