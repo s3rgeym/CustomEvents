@@ -1,36 +1,8 @@
-Generated from source file: event-emitter.js
-
 Custom events in JavaScript
- * author Sergei Snegirev (yamldeveloper@proton.me)
+<br>&#64;author Sergei Snegirev (yamldeveloper@proton.me)
 
 ```javascript
-function App() {}
-
-App.prototype.login = function(username, password) {
-  if (username === "tester" && password === "test123") {
-    this.emit("loginSuccess");
-  } else {
-    this.emit("loginError", {
-      error: "invalid_client", 
-      message: "Invalid username or password"
-    });
-  }
-};
-
-EventEmitter.mixin(App);
-
-var app = new App();
-
-app.on("loginSuccess", () => {
-  console.info("Login Succeeded");
-});
-
-app.on("loginError", (data) => {
-  console.warn("%s: %s", data.error, data.message);
-});
-
-setTimeout(() => app.login("tester", "qwerty"), 1000);
-setTimeout(() => app.login("tester", "test123"), 2000);
+function EventEmitter() {}
 ```
 
 Add event listener
@@ -39,11 +11,15 @@ Add event listener
 .on(event, fn[, scope[, once]])
 ```
 
- * param event {string}
- * param fn {function}
- * param scope {object}
- * param once {boolean}
- * return {this}
+<br>&#64;param event {string}
+<br>&#64;param fn {function}
+<br>&#64;param scope {object}
+<br>&#64;param once {boolean}
+<br>&#64;return {this}
+
+```javascript
+on: function(event, fn, scope, once) {}
+```
 
 Add one-shot event listener
 
@@ -51,10 +27,14 @@ Add one-shot event listener
 .once(event, fn[, scope])
 ```
 
- * param event {string}
- * param fn {function}
- * param scope {object}
- * return {this}
+<br>&#64;param event {string}
+<br>&#64;param fn {function}
+<br>&#64;param scope {object}
+<br>&#64;return {this}
+
+```javascript
+once: function(event, fn, scope) {}
+```
 
 Remove event listeners
 
@@ -62,10 +42,14 @@ Remove event listeners
 .off([event[, fn[, scope]]])
 ```
 
- * param event {string}
- * param fn {function}
- * param scope {object}
- * return {this}
+<br>&#64;param event {string}
+<br>&#64;param fn {function}
+<br>&#64;param scope {object}
+<br>&#64;return {this}
+
+```javascript
+off: function(event, fn, scope) {}
+```
 
 Emit event
 
@@ -73,5 +57,27 @@ Emit event
 .emit(event[, arg1[, arg2[, ...]]])
 ```
 
- * param event {string}
- * param *args
+<br>&#64;param event {string}
+<br>&#64;param *args
+
+```javascript
+emit: function(event, args) {}
+```
+
+Add mixin to obj 
+
+```javascript
+function Foo() {}
+
+EventEmitter.mixin(Foo);
+var foo = new Foo();
+foo.on("test", () => console.log("It's works!"));
+foo.emit("test");
+```
+
+<br>&#64;param obj {object}
+<br>&#64;return {object}
+
+```javascript
+EventEmitter.mixin = function(obj) {}
+```

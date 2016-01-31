@@ -1,36 +1,6 @@
 /**
  * Custom events in JavaScript
  * @author Sergei Snegirev (yamldeveloper@proton.me)
- *
- * <code>
- * function App() {}
- * 
- * App.prototype.login = function(username, password) {
- *   if (username === "tester" && password === "test123") {
- *     this.emit("loginSuccess");
- *   } else {
- *     this.emit("loginError", {
- *       error: "invalid_client", 
- *       message: "Invalid username or password"
- *     });
- *   }
- * };
- * 
- * EventEmitter.mixin(App);
- * 
- * var app = new App();
- * 
- * app.on("loginSuccess", () => {
- *   console.info("Login Succeeded");
- * });
- * 
- * app.on("loginError", (data) => {
- *   console.warn("%s: %s", data.error, data.message);
- * });
- * 
- * setTimeout(() => app.login("tester", "qwerty"), 1000);
- * setTimeout(() => app.login("tester", "test123"), 2000);
- * </code>
  */
 function EventEmitter() {
   this._listeners = {};
@@ -145,6 +115,21 @@ EventEmitter.prototype = {
   }
 };
 
+/**
+ * Add mixin to obj 
+ *
+ * <code>
+ * function Foo() {}
+ *
+ * EventEmitter.mixin(Foo);
+ * var foo = new Foo();
+ * foo.on("test", () => console.log("It's works!"));
+ * foo.emit("test");
+ * </code>
+ *
+ * @param obj {object}
+ * @return {object}
+ */
 EventEmitter.mixin = function(obj) {
   if (typeof obj == "function") {
     obj = obj.prototype;
