@@ -1,7 +1,36 @@
 /**
  * Custom events in JavaScript
- *
  * @author Sergei Snegirev (yamldeveloper@proton.me)
+ *
+ * <code>
+ * function App() {}
+ * 
+ * App.prototype.login = function(username, password) {
+ *   if (username === "tester" && password === "test123") {
+ *     this.emit("loginSuccess");
+ *   } else {
+ *     this.emit("loginError", {
+ *       error: "invalid_client", 
+ *       message: "Invalid username or password"
+ *     });
+ *   }
+ * };
+ * 
+ * Events.mixin(App);
+ * 
+ * var app = new App();
+ * 
+ * app.on("loginSuccess", () => {
+ *   console.info("Login Succeeded");
+ * });
+ * 
+ * app.on("loginError", (data) => {
+ *   console.warn("%s: %s", data.error, data.message);
+ * });
+ * 
+ * setTimeout(() => app.login("tester", "qwerty"), 1000);
+ * setTimeout(() => app.login("tester", "test123"), 2000);
+ * </code>
  */
 function Events() {
   this._listeners = {};
@@ -11,8 +40,7 @@ Events.prototype = {
   /**
    * Add event listener
    *
-   * Usage:
-   *   .on(event, fn[, scope[, once]])
+   * <code>.on(event, fn[, scope[, once]])</code>
    *
    * @param event {string}
    * @param fn {function}
@@ -32,8 +60,7 @@ Events.prototype = {
   /**
    * Add one-shot event listener
    *
-   * Usage:
-   *   .once(event, fn[, scope])
+   * <code>.once(event, fn[, scope])</code>
    *
    * @param event {string}
    * @param fn {function}
@@ -46,8 +73,7 @@ Events.prototype = {
   /**
    * Remove event listeners
    *
-   * Usage:
-   *   .off([event[, fn[, scope]]])
+   * <code>.off([event[, fn[, scope]]])</code>
    *
    * @param event {string}
    * @param fn {function}
@@ -68,7 +94,8 @@ Events.prototype = {
       // remove all listeners fn for event in the scope
       if (this._hasEvent(event)) {
         var listeners = this._listeners[event];
-        for (var i = 0; i < listeners.length;) {
+        var i = 0;
+        while (i < listeners.length) {
           var listener = listeners[i];
           if (fn === listener.fn &&
               (scope == null || scope === listener.scope)) {
@@ -87,8 +114,7 @@ Events.prototype = {
   /**
    * Emit event
    *
-   * Usage:
-   *   .emit(event[, arg1[, arg2[, ...]]])
+   * <code>.emit(event[, arg1[, arg2[, ...]]])</code>
    *
    * @param event {string}
    * @param *args
@@ -99,7 +125,8 @@ Events.prototype = {
     }
     args = [].slice.call(arguments, 1);
     var listeners = this._listeners[event];
-    for (var i = 0; i < listeners.length;) {
+    var i = 0;
+    while (i < listeners.length) {
       var listener = listeners[i];
       listener.fn.apply(listener.scope, args)
       if (listener.once) {
@@ -122,7 +149,7 @@ Events.mixin = function(obj) {
   if (typeof obj == "function") {
     obj = obj.prototype;
   }
-  var proto = new EventEmitter();
+  var proto = new Events();
   for (var i in proto) {
     obj[i] = proto[i];
   }
