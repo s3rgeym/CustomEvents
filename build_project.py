@@ -7,5 +7,5 @@ def main(filename):
     readmebuilder.build(filename)
 
 
-if __name__ == "__main__":
-    exit(main("event-emitter.js"))
+if __name__ == '__main__':
+    main("event-emitter.js")
