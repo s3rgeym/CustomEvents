@@ -1,6 +1,6 @@
-/**
- * @author Sergei Snegirev (yamldeveloper@proton.me)
- */
+//
+// @author Sergei Snegirev (yamldeveloper@proton.me)
+//
 
 /**
  * EventEmitter constructor
@@ -13,12 +13,10 @@ EventEmitter.prototype = {
   /**
    * Add event listener
    *
-   * <code>.on(event, fn[, scope[, once]])</code>
-   *
    * @param event {string}
    * @param fn {function}
-   * @param scope {object}
-   * @param once {boolean}
+   * @param scope {object} (optional)
+   * @param once {boolean} (optional)
    * @return {this}
    */
   on: function(event, fn, scope, once) {
@@ -33,11 +31,9 @@ EventEmitter.prototype = {
   /**
    * Add one-shot event listener
    *
-   * <code>.once(event, fn[, scope])</code>
-   *
    * @param event {string}
    * @param fn {function}
-   * @param scope {object}
+   * @param scope {object} (optional)
    * @return {this}
    */
   once: function(event, fn, scope) {
@@ -46,11 +42,10 @@ EventEmitter.prototype = {
   /**
    * Remove event listeners
    *
-   * <code>.off([event[, fn[, scope]]])</code>
    *
-   * @param event {string}
-   * @param fn {function}
-   * @param scope {object}
+   * @param event {string} (optional)
+   * @param fn {function} (optional)
+   * @param scope {object} (optional)
    * @return {this}
    */
   off: function(event, fn, scope) {
