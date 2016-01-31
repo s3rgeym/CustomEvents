@@ -1,9 +1,8 @@
 Custom events in JavaScript
 
 @author Sergei Snegirev (yamldeveloper@proton.me)
- 
-Add event listener
 
+Add event listener
 
 ```javascript
   .on(event, fn[, scope[, once]])
@@ -14,9 +13,8 @@ Add event listener
 @param scope {object}
 @param once {boolean}
 @return {this}
-   
-Add one-shot event listener
 
+Add one-shot event listener
 
 ```javascript
   .once(event, fn[, scope])
@@ -26,9 +24,8 @@ Add one-shot event listener
 @param fn {function}
 @param scope {object}
 @return {this}
-   
-Remove event listeners
 
+Remove event listeners
 
 ```javascript
   .off([event[, fn[, scope]]])
@@ -38,9 +35,8 @@ Remove event listeners
 @param fn {function}
 @param scope {object}
 @return {this}
-   
-Emit event
 
+Emit event
 
 ```javascript
   .emit(event[, arg1[, arg2[, ...]]])
@@ -48,4 +44,3 @@ Emit event
 
 @param event {string}
 @param *args
-   
