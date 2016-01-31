@@ -1,6 +1,6 @@
+import os
 import urllib.parse
 import urllib.request
-import os
 
 
 def minify(src, dst=None):

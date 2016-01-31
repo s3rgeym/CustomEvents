@@ -16,7 +16,7 @@
  *   }
  * };
  * 
- * Events.mixin(App);
+ * EventEmitter.mixin(App);
  * 
  * var app = new App();
  * 
@@ -32,11 +32,11 @@
  * setTimeout(() => app.login("tester", "test123"), 2000);
  * </code>
  */
-function Events() {
+function EventEmitter() {
   this._listeners = {};
 }
 
-Events.prototype = {
+EventEmitter.prototype = {
   /**
    * Add event listener
    *
@@ -49,7 +49,7 @@ Events.prototype = {
    * @return {this}
    */
   on: function(event, fn, scope, once) {
-    (this._hasEvent(event) ? this._listeners[event] :
+    (this._hasListeners(event) ? this._listeners[event] :
       this._listeners[event] = []).push({
       fn: fn,
       scope: scope != null ? scope : this,
@@ -86,13 +86,13 @@ Events.prototype = {
       this._listeners = {};
     } else if (arguments.length == 1) {
       // .off(event) remove all listeners for event
-      if (this._hasEvent(event)) {
+      if (this._hasListeners(event)) {
         delete this._listeners[event];
       }
     } else {
       // .off(event, fn[, scope]) remove all listeners fn for event or
       // remove all listeners fn for event in the scope
-      if (this._hasEvent(event)) {
+      if (this._hasListeners(event)) {
         var listeners = this._listeners[event];
         var i = 0;
         while (i < listeners.length) {
@@ -120,7 +120,7 @@ Events.prototype = {
    * @param *args
    */
   emit: function(event, args) {
-    if (!this._hasEvent(event)) {
+    if (!this._hasListeners(event)) {
       return;
     }
     args = [].slice.call(arguments, 1);
@@ -140,16 +140,16 @@ Events.prototype = {
     }
 
   },
-  _hasEvent: function(event) {
+  _hasListeners: function(event) {
     return this._listeners.hasOwnProperty(event);
   }
 };
 
-Events.mixin = function(obj) {
+EventEmitter.mixin = function(obj) {
   if (typeof obj == "function") {
     obj = obj.prototype;
   }
-  var proto = new Events();
+  var proto = new EventEmitter();
   for (var i in proto) {
     obj[i] = proto[i];
   }
