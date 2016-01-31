@@ -17,9 +17,9 @@ def build(filename):
         description = re_at.sub('<br>&#64;', description)
         function = match[1].strip()
         function += " {}"
+        out.append("```javascript\n" + function + "\n```\n")
         out.append(description)
         out.append("")
-        out.append("```javascript\n" + function + "\n```\n")
     content = "\n".join(out)
     content = re.sub(r"<code>\s*([\s\S]+?)\s*</code>",
                      "```javascript\n\\1\n```",

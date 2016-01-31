@@ -1,8 +1,15 @@
-Custom events in JavaScript
-<br>&#64;author Sergei Snegirev (yamldeveloper@proton.me)
-
 ```javascript
 function EventEmitter() {}
+```
+
+<br>&#64;author Sergei Snegirev (yamldeveloper@proton.me)
+/
+
+/**
+EventEmitter constructor
+
+```javascript
+on: function(event, fn, scope, once) {}
 ```
 
 Add event listener
@@ -18,7 +25,7 @@ Add event listener
 <br>&#64;return {this}
 
 ```javascript
-on: function(event, fn, scope, once) {}
+once: function(event, fn, scope) {}
 ```
 
 Add one-shot event listener
@@ -33,7 +40,7 @@ Add one-shot event listener
 <br>&#64;return {this}
 
 ```javascript
-once: function(event, fn, scope) {}
+off: function(event, fn, scope) {}
 ```
 
 Remove event listeners
@@ -48,7 +55,7 @@ Remove event listeners
 <br>&#64;return {this}
 
 ```javascript
-off: function(event, fn, scope) {}
+emit: function(event, args) {}
 ```
 
 Emit event
@@ -61,7 +68,7 @@ Emit event
 <br>&#64;param *args
 
 ```javascript
-emit: function(event, args) {}
+EventEmitter.mixin = function(obj) {}
 ```
 
 Add mixin to obj 
@@ -77,7 +84,3 @@ foo.emit("test");
 
 <br>&#64;param obj {object}
 <br>&#64;return {object}
-
-```javascript
-EventEmitter.mixin = function(obj) {}
-```
