@@ -8,8 +8,8 @@ console.log("Remove all listeners");
 events.off();
 
 function test() {
-    console.log("Scope: " + this.constructor.name);
-    console.log("Arguments: " + JSON.stringify([].slice.call(arguments)));
+  console.log("Scope: " + this.constructor.name);
+  console.log("Arguments: " + JSON.stringify([].slice.call(arguments)));
 }
 
 events.on("test", test);
@@ -25,3 +25,31 @@ console.log(events._listeners);
 console.log("Remove test listeners");
 events.off("test");
 console.log(events._listeners);
+
+function App() {}
+
+App.prototype.login = function(username, password) {
+  if (username === "tester" && password === "test123") {
+    this.emit("loginSuccess");
+  } else {
+    this.emit("loginError", {
+      error: "invalid_client", 
+      message: "Invalid username or password"
+    });
+  }
+};
+
+Events.mixin(App);
+
+var app = new App();
+
+app.on("loginSuccess", () => {
+  console.info("Login Succeeded");
+});
+
+app.on("loginError", (data) => {
+  console.warn("%s: %s", data.error, data.message);
+});
+
+setTimeout(() => app.login("tester", "qwerty"), 1000);
+setTimeout(() => app.login("tester", "test123"), 2000);
