@@ -1,5 +1,7 @@
+Generated from source file: event-emitter.js
+
 Custom events in JavaScript
-* author Sergei Snegirev (yamldeveloper@proton.me)
+ * author Sergei Snegirev (yamldeveloper@proton.me)
 
 ```javascript
 function App() {}
@@ -9,13 +11,13 @@ App.prototype.login = function(username, password) {
     this.emit("loginSuccess");
   } else {
     this.emit("loginError", {
-      error: "invalid_client",
+      error: "invalid_client", 
       message: "Invalid username or password"
     });
   }
 };
 
-Events.mixin(App);
+EventEmitter.mixin(App);
 
 var app = new App();
 
@@ -37,11 +39,11 @@ Add event listener
 .on(event, fn[, scope[, once]])
 ```
 
-* param event {string}
-* param fn {function}
-* param scope {object}
-* param once {boolean}
-* return {this}
+ * param event {string}
+ * param fn {function}
+ * param scope {object}
+ * param once {boolean}
+ * return {this}
 
 Add one-shot event listener
 
@@ -49,10 +51,10 @@ Add one-shot event listener
 .once(event, fn[, scope])
 ```
 
-* param event {string}
-* param fn {function}
-* param scope {object}
-* return {this}
+ * param event {string}
+ * param fn {function}
+ * param scope {object}
+ * return {this}
 
 Remove event listeners
 
@@ -60,10 +62,10 @@ Remove event listeners
 .off([event[, fn[, scope]]])
 ```
 
-* param event {string}
-* param fn {function}
-* param scope {object}
-* return {this}
+ * param event {string}
+ * param fn {function}
+ * param scope {object}
+ * return {this}
 
 Emit event
 
@@ -71,5 +73,5 @@ Emit event
 .emit(event[, arg1[, arg2[, ...]]])
 ```
 
-* param event {string}
-* param *args
+ * param event {string}
+ * param *args

@@ -1,9 +1,11 @@
 import jsminifier
+import readmebuilder
 
 
-def main():
-    jsminifier.minify("events.js")
+def main(filename):
+    jsminifier.minify(filename)
+    readmebuilder.build(filename)
 
 
 if __name__ == "__main__":
-    main()
+    exit(main("event-emitter.js"))
