@@ -1,4 +1,3 @@
-import os
 import re
 
 FILENAME = "README.md"
@@ -8,7 +7,7 @@ def build(filename):
     with open(filename, encoding="utf-8") as fp:
         content = fp.read()
     out = []
-    matches = re.findall(r"/\*\*\s+([\s\S]+?)\s+\*/\s+(.*function[^{]+)",
+    matches = re.findall(r"/\*\*\s+([\s\S]+?)\s+\*/\s+(.*?function[^{]+)",
                          content)
     re_asterisk = re.compile(r'^[ \t]*\* ?', re.M)
     re_at = re.compile(r'^@', re.M)

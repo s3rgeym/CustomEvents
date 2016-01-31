@@ -2,10 +2,6 @@
 function EventEmitter() {}
 ```
 
-<br>&#64;author Sergei Snegirev (yamldeveloper@proton.me)
-/
-
-/**
 EventEmitter constructor
 
 ```javascript
@@ -14,14 +10,10 @@ on: function(event, fn, scope, once) {}
 
 Add event listener
 
-```javascript
-.on(event, fn[, scope[, once]])
-```
-
 <br>&#64;param event {string}
 <br>&#64;param fn {function}
-<br>&#64;param scope {object}
-<br>&#64;param once {boolean}
+<br>&#64;param scope {object} (optional)
+<br>&#64;param once {boolean} (optional)
 <br>&#64;return {this}
 
 ```javascript
@@ -30,13 +22,9 @@ once: function(event, fn, scope) {}
 
 Add one-shot event listener
 
-```javascript
-.once(event, fn[, scope])
-```
-
 <br>&#64;param event {string}
 <br>&#64;param fn {function}
-<br>&#64;param scope {object}
+<br>&#64;param scope {object} (optional)
 <br>&#64;return {this}
 
 ```javascript
@@ -45,13 +33,10 @@ off: function(event, fn, scope) {}
 
 Remove event listeners
 
-```javascript
-.off([event[, fn[, scope]]])
-```
 
-<br>&#64;param event {string}
-<br>&#64;param fn {function}
-<br>&#64;param scope {object}
+<br>&#64;param event {string} (optional)
+<br>&#64;param fn {function} (optional)
+<br>&#64;param scope {object} (optional)
 <br>&#64;return {this}
 
 ```javascript
