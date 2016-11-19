@@ -1,3 +1,4 @@
+# !УСТАРЕЛ
 import re
 
 FILENAME = "README.md"
