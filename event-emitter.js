@@ -15,7 +15,7 @@ class EventEmitter {
   // !Помните, что объявление стрелочной функции вида (x) => {} аналогично
   // function (x) {}.bind(this), т.е. стрелочные функции захватывают контекст.
   /**
-   *
+   * Add listener.
    * @param {string} type
    * @param {function} listener
    * @return {EventEmmiter}
@@ -32,6 +32,7 @@ class EventEmitter {
   }
 
   /**
+    * Remove listener(s).
     * off() --> remove all listeners
     * off(type) --> remove all listeners of type
     * off(type, listener) --> remove listener of type
@@ -64,7 +65,7 @@ class EventEmitter {
   }
 
   /**
-   *
+   * emit( type [, arg1 [, arg2 [, ...]]] )
    * @param {string} type
    * @param {mixed} ...args
    * @return {EventEmmiter}
