@@ -18,3 +18,11 @@ console.log('Finished');
 // Nothing will happen
 // Finished
 ```
+Default listeners:
+
+```javascript
+const e=new EventEmitter
+e.onstart=()=>console.log('Started');
+()=>console.log('Started')
+e.emit('start') // print "Started"
+```
