@@ -1,3 +1,5 @@
+// !УСТАРЕЛ
+
 var emitter = new EventEmitter();
 console.log("Test .on and .once");
 emitter.on("test", () => console.log("Я буду вызываться постоянно"));
