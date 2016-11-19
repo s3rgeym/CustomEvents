@@ -1,71 +1,20 @@
-```javascript
-function EventEmitter() {}
-```
+Custom events in JavaScript
 
-EventEmitter constructor
+Класс для работы с пользовательскими событиями.
 
 ```javascript
-on: function(event, fn, scope, once) {}
+const emitter = new EventEmitter;
+emitter.on('hello', name => console.log(`Hello, ${name}!`));
+console.log('Must print "Hello, World!"');
+emitter.emit('hello', 'World');
+emitter.off(); // remove all listeners
+console.log('Nothing will happen');
+emitter.emit('hello', '...');
+console.log('Finished');
+
+// Output:
+// Must print "Hello, World!"
+// Hello, World!
+// Nothing will happen
+// Finished
 ```
-
-Add event listener
-
-<br>&#64;param event {string}
-<br>&#64;param fn {function}
-<br>&#64;param scope {object} (optional)
-<br>&#64;param once {boolean} (optional)
-<br>&#64;return {this}
-
-```javascript
-once: function(event, fn, scope) {}
-```
-
-Add one-shot event listener
-
-<br>&#64;param event {string}
-<br>&#64;param fn {function}
-<br>&#64;param scope {object} (optional)
-<br>&#64;return {this}
-
-```javascript
-off: function(event, fn, scope) {}
-```
-
-Remove event listeners
-
-
-<br>&#64;param event {string} (optional)
-<br>&#64;param fn {function} (optional)
-<br>&#64;param scope {object} (optional)
-<br>&#64;return {this}
-
-```javascript
-emit: function(event, args) {}
-```
-
-Emit event
-
-```javascript
-.emit(event[, arg1[, arg2[, ...]]])
-```
-
-<br>&#64;param event {string}
-<br>&#64;param *args
-
-```javascript
-EventEmitter.mixin = function(obj) {}
-```
-
-Add mixin to obj 
-
-```javascript
-function Foo() {}
-
-EventEmitter.mixin(Foo);
-var foo = new Foo();
-foo.on("test", () => console.log("It's works!"));
-foo.emit("test");
-```
-
-<br>&#64;param obj {object}
-<br>&#64;return {object}
