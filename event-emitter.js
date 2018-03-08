@@ -24,7 +24,8 @@ class EventEmitter {
     } else {
       // remove event listener
       const listeners = this[EVENT_LISTENERS].get(event)
-      if (listeners.delete(listener) && listeners.size === 0) {
+      listeners.delete(listener)
+      if (listeners.size === 0) {
         this[EVENT_LISTENERS].delete(event)
       }
     }
